@@ -1,5 +1,13 @@
+import Head from "../components/Head"
+import TravelSection from "../components/TravelSection"
+
 export default function travelJournal(){
   return (
-    <h1>Travel Journal</h1>
+    <>
+      <Head />
+      <TravelSection />
+      <TravelSection />
+      <TravelSection />
+    </>
   )
 }
