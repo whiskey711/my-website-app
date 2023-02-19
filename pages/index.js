@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
+import eva from "../public/images/eva.jpeg"
 
 export default function Home() {
   return (
@@ -7,17 +9,12 @@ export default function Home() {
       <Head>
         <title>My Portfolio Website</title>
       </Head>
-      <h1>My First Next JS Project</h1>
-      <ul>
-        <li>
-          <Link href="/travel-journal">
-            Travel Journal
-          </Link>
-        </li>
-        <li>Meme Generator</li>
-        <li>Tenzies</li>
-        <li>Quizzical</li>
-      </ul>
+      <main className="flex">
+        <div>
+          Hi, I am Linfeng Xu, a software engineer
+        </div>
+        <Image src={eva} alt="eva unit unknown" />
+      </main>
     </>
   )
 }
