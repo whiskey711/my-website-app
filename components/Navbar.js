@@ -11,8 +11,10 @@ export default function Navbar() {
           <Link
             href="/"
             className="rounded-lg hover:underline">Home</Link>
-          <li className="rounded-lg hover:underline">About</li>
-          <li className="rounded-lg hover:underline">Projects</li>
+          <li className="rounded-lg hover:underline">Resume</li>
+          <Link
+            href="/projects" 
+            className="rounded-lg hover:underline">Projects</Link>
           <li className="rounded-lg hover:underline">Contact</li>
         </ul>
       </nav>

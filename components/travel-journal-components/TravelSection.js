@@ -1,5 +1,5 @@
 import Image from "next/image";
-import marker from "../public/images/map-marker.png"
+import marker from "../../public/images/map-marker.png"
 
 function TravelSection(props) {
   return (

@@ -1,5 +1,5 @@
-import Head from "../components/Head"
-import TravelSection from "../components/TravelSection"
+import Head from "../../components/travel-journal-components/Head"
+import TravelSection from "../../components/travel-journal-components/TravelSection"
 
 const journalData = [
   {

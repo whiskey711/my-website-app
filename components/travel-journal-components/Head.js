@@ -1,5 +1,5 @@
 import Image from "next/image"
-import logo from "../public/images/travel-journal-logo.png"
+import logo from "../../public/images/travel-journal-logo.png"
 
 function Head() {
   return (
