@@ -11,10 +11,19 @@ export default function TenzieInterface() {
       id: nanoid()
     }
   ]);
+  const [tenzies, setTenzies] = useState(false);
 
   useEffect(() => {
     setDice(allNewDice());
-  }, [])
+  }, []);
+  useEffect(() => {
+    const allHeld = dice.every(die => die.isHeld);
+    const firstValue = dice[0].value;
+    const allSameValue = dice.every(die => die.value === firstValue);
+    if (allHeld && allSameValue) {
+        setTenzies(true);
+    }
+  }, [dice]);
 
   function allNewDice() {
     const newDice = []
@@ -34,8 +43,19 @@ export default function TenzieInterface() {
 
   function holdDice(id) {
     setDice(oldDice => oldDice.map(die => {
-      return die.id === id ? {...die, isHeld: !die.isHeld} : die
-    }))
+      return die.id === id ? {...die, isHeld: !die.isHeld} : die;
+    }));
+  }
+
+  function rollDice() {
+    if(!tenzies) {
+      setDice(oldDice => oldDice.map(die => {
+        return die.isHeld ? die : generateNewDie();
+      }));
+    } else {
+      setTenzies(false);
+      setDice(allNewDice());
+    }
   }
 
   const diceElements = dice.map((die) => {
@@ -56,7 +76,9 @@ export default function TenzieInterface() {
       <div className="grid grid-cols-5 gap-2">
         {diceElements}
       </div>
-      <button>Roll</button>
+      <button className="bg-indigo-500 text-white" onClick={rollDice}>
+        {tenzies ? "New Game" : "Roll"}
+      </button>
     </div>
   );
 }
