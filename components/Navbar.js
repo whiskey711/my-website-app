@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <header className="flex justify-between bg-gray-50 px-5 py-3 mb-5 drop-shadow-md">
+    <header className="flex justify-between bg-gray-50 px-5 py-3 drop-shadow-md">
       <h1 className="font-bold text-2xl">
         Linfeng Xu
       </h1>
