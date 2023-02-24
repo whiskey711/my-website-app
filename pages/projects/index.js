@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function projects(){
   return (
-    <div className="grid grid-cols-2 gap-5">
+    <div className="grid grid-cols-2 gap-5 m-5">
       <Link 
         href="/projects/travel-journal" 
         className="bg-zinc-200 hover:cursor-pointer h-32 drop-shadow-md rounded-lg flex justify-center items-center">

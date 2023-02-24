@@ -79,12 +79,18 @@ export default function Quiz() {
   }
 
   return (
-    <div>
-      {questionElements}
-      {showAnswer && <span>{`You scored ${score}/5 correct answers`}</span>}
-      <button onClick={toggleAnswer}>
-        {showAnswer ? "Play again" : "Check Answers"}
-      </button>
+    <div className="bg-neutral-100 w-10/12 max-w-4xl rounded-lg flex flex-col justify-center items-center">
+      <div className="m-10">
+        {questionElements}
+        <div className="mt-3 flex justify-center items-center space-x-4">
+          {showAnswer && <span className="font-medium">
+            {`You scored ${score}/5 correct answers`}
+          </span>}
+          <button onClick={toggleAnswer} className="px-3 py-1 bg-blue-700 text-white rounded-md">
+            {showAnswer ? "Play again" : "Check Answers"}
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

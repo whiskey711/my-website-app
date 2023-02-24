@@ -14,7 +14,7 @@ export default function Die(props) {
   const dieDotElements = [];
   for (let i=0; i<props.value; i++) {
     dieDotElements.push(
-      <div className={style + styleArr[i]}></div>
+      <div key={i} className={style + styleArr[i]}></div>
     );
   }
   if (props.value % 2 != 0) {

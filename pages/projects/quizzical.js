@@ -9,9 +9,9 @@ export default function quizzical() {
       setStart(true);
   }
   return (
-    <main>
+    <div className="m-5 p-5 bg-gray-500 rounded-lg flex justify-center">
         {!start && <Cover startQuiz={startQuiz} />}
         {start && <Quiz />}
-    </main>
+    </div>
   );
 }
