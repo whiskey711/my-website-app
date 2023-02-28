@@ -3,11 +3,13 @@ import Meme from "@/components/meme-generator-components/Meme"
 
 export default function memeGenerator(props) {
   return (
-    <div>
-      <MemeHeader />
-      <Meme 
-        allmemes={props.memes}
-      />
+    <div className="m-5 p-5 bg-gray-500 rounded-lg flex justify-center">
+      <div className="bg-white rounded-lg">
+        <MemeHeader />
+        <Meme 
+          allmemes={props.memes}
+        />
+      </div>
     </div>
   )
 }

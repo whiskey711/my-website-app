@@ -30,14 +30,15 @@ export default function Meme(props) {
   }
 
   return (
-    <main>
-      <div>
+    <main className="w-[500px]">
+      <div className="m-5 grid grid-rows-2 grid-cols-2 gap-5">
         <input
           type="text"
           placeholder="Top text"
           name="topText"
           value={meme.topText}
           onChange={handleChange}
+          className="border border-gray-400 rounded-md"
         />
         <input
           type="text"
@@ -45,14 +46,17 @@ export default function Meme(props) {
           name="bottomText"
           value={meme.bottomText}
           onChange={handleChange}
+          className="border border-gray-400 rounded-md"
         />
-        <button className="bg-slate-300" onClick={getMemeImage}>
+        <button className="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md col-span-2 text-white" onClick={getMemeImage}>
           Get a new meme image
         </button>
       </div>
-      <img src={meme.randomImage} alt="meme image" />
-      <h2>{meme.topText}</h2>
-      <h2>{meme.bottomText}</h2>
+      <div className="relative m-5 text-white">
+        <img src={meme.randomImage} alt="meme image" />
+        <h2 className="absolute top-7 font-impact uppercase text-2xl left-1/2 -translate-x-1/2 -translate-y-1/2 text-shadow shadow-black w-2/3 text-center">{meme.topText}</h2>
+        <h2 className="absolute bottom-0 font-impact uppercase text-2xl left-1/2 -translate-x-1/2 -translate-y-1/2 text-shadow shadow-black w-2/3 text-center">{meme.bottomText}</h2>
+      </div>
     </main>
   );
 }
