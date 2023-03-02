@@ -41,9 +41,13 @@ export default function travelJournal(){
     )
   })
   return (
-    <>
-      <Head />
-      {travelSectionElements}
-    </>
+    <div className="m-5 p-5 bg-gray-500 rounded-lg flex justify-center">
+      <div className="bg-white rounded-lg w-[650px]">
+        <Head />
+        <div className="p-10">
+          {travelSectionElements}
+        </div>
+      </div>
+    </div>
   )
 }
