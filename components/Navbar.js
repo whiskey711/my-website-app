@@ -11,7 +11,9 @@ export default function Navbar() {
           <Link
             href="/"
             className="rounded-lg hover:underline decoration-2 underline-offset-8">Home</Link>
-          <li className="rounded-lg hover:underline decoration-2 underline-offset-8">Resume</li>
+          <Link 
+            href="/resume"
+            className="rounded-lg hover:underline decoration-2 underline-offset-8">Resume</Link>
           <Link
             href="/projects" 
             className="rounded-lg hover:underline decoration-2 underline-offset-8">Projects</Link>
