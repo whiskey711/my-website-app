@@ -1,5 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import About from '@/components/About'
+import Projects from '@/components/projects'
+import HomeSec from '@/components/HomeSec'
 import Image from 'next/image'
 import eva from "../public/images/eva.jpeg"
 
@@ -9,12 +12,10 @@ export default function Home() {
       <Head>
         <title>My Portfolio Website</title>
       </Head>
-      <main className="flex">
-        <div>
-          Hi, I am Linfeng Xu, a software engineer
-        </div>
-        <Image src={eva} alt="eva unit unknown" />
-      </main>
+      <section id="home"><HomeSec /></section>
+      <section id="about"><About /></section>
+      <section id="projects"><Projects /></section>
+      <section id="contact"></section>
     </>
   )
 }
