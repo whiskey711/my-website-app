@@ -7,7 +7,7 @@ export default function About() {
 
   const skills = ["HTML", "CSS", "Tailwind", "JavaScript", "React.js", "Next.js", "Node.js", "Java", "Spring", "C#", ".NET", "MySql"];
   const skillsElement = skills.map((skill) => {
-    return <div className="py-2 px-3 bg-stone-300 rounded-md mr-3 mb-3 text-xl text-gray-700">
+    return <div className="py-2 px-3 bg-stone-300 rounded-md mr-3 mb-3 text-xl text-gray-700" key={skill}>
       {skill}
     </div>
   });
