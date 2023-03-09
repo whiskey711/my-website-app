@@ -17,7 +17,9 @@ export default function Navbar() {
           <Link
             href="#projects" 
             className="rounded-lg hover:underline decoration-2 underline-offset-8">Projects</Link>
-          <li className="rounded-lg hover:underline decoration-2 underline-offset-8">Contact</li>
+          <Link 
+            href="#contact"
+            className="rounded-lg hover:underline decoration-2 underline-offset-8">Contact</Link>
         </ul>
       </nav>
     </header>
