@@ -1,4 +1,4 @@
-import { AiOutlineGithub, AiOutlineLinkedin, AiOutlineFileText, AiOutlineMail } from "react-icons/ai";
+import { AiOutlineGithub, AiOutlineLinkedin, AiOutlineSolution, AiOutlineMail } from "react-icons/ai";
 import Router from "next/router";
 
 export default function HomeSec() {
@@ -50,7 +50,7 @@ export default function HomeSec() {
             target="_blank" 
             rel="noopener noreferrer"
             title="Resume">
-            <AiOutlineFileText size={34} />
+            <AiOutlineSolution size={34} />
           </a>
         </div>
       </div>
