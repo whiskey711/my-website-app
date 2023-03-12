@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { AiOutlinePhone, AiOutlineMail, AiOutlineHome } from "react-icons/ai";
+import { AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
 
 export default function Contact() {
 
@@ -16,18 +16,14 @@ export default function Contact() {
   return (
     <div className="border border-green-500 min-h-screen flex flex-col justify-center items-center">
       <h1>Contact</h1>
-      <div>
-        <div>
-          <AiOutlinePhone />
-          <p>phone number</p>
+      <div className="border border-pink-500 flex">
+        <div className="flex items-center justify-center m-3">
+          <AiOutlinePhone className="mx-3"/>
+          <p>+1 778 678 8035</p>
         </div>
-        <div>
-          <AiOutlineMail />
-          <p>email address</p>
-        </div>
-        <div>
-          <AiOutlineHome />
-          <p>address</p>
+        <div className="flex items-center justify-center m-3">
+          <AiOutlineMail className="mx-3"/>
+          <p>james2012.shun@gmail.com</p>
         </div>
       </div>
       <form 
