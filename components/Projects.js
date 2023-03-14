@@ -1,6 +1,14 @@
 import Link from "next/link";
 
 export default function Projects() {
+  const projs = [1,2,3];
+  const projElements = projs.map((proj) => {
+    return (
+      <div className="w-2/3 border">
+        {proj}
+      </div>
+    );
+  });
   return (
     <div className="border border-blue-600 min-h-screen">
       <div className="grid grid-cols-2 gap-5 m-5">
@@ -24,6 +32,9 @@ export default function Projects() {
           className="bg-zinc-200 hover:cursor-pointer h-32 drop-shadow-md rounded-lg flex justify-center items-center">
           Quizzical
         </Link>
+      </div>
+      <div className="">
+        {projElements}
       </div>
     </div>
   );
