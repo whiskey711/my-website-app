@@ -1,11 +1,25 @@
 import Link from "next/link";
+import { nanoid } from "nanoid";
+import Image from "next/image";
+import tenzieScreenShot from "../public/images/tenzies-screenshot.png"
 
 export default function Projects() {
-  const projs = [1,2,3];
+  const projs = [
+    {
+      screenShot: "../public/images/tenzies-screenshot.png",
+      title: "Tenzies",
+      description: "This is tenzies",
+      url: "/projects/tenzies"
+    },
+
+  ];
   const projElements = projs.map((proj) => {
     return (
-      <div className="w-2/3 border">
-        {proj}
+      <div key={nanoid()} className="flex-none mr-8 w-2/3 border">
+        <img src={proj.screenShot} alt="tenzies" />
+        <h1>{proj.title}</h1>
+        <p>{proj.description}</p>
+        <Link href={proj.url}>Link</Link>
       </div>
     );
   });
@@ -33,7 +47,7 @@ export default function Projects() {
           Quizzical
         </Link>
       </div>
-      <div className="">
+      <div className="flex flex-nowrap overflow-x-scroll items-start mb-8">
         {projElements}
       </div>
     </div>
