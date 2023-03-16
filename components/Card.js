@@ -1,17 +1,18 @@
 import Link from "next/link";
-import tenzieScreenShot from "../public/images/tenzies-screenshot.png";
 import Image from "next/image";
 
 export default function Card(props) {
   return (
     <div className="flex justify-center">
-      <div
-        className="block max-w-sm rounded-lg bg-white shadow-lg">
-        <Link href={props.content.url}>
-          <Image
-            className="rounded-t-lg"
-            src={tenzieScreenShot}
-            alt="" />
+      <div className="block max-w-sm rounded-lg bg-zinc-200 shadow-lg">
+        <Link 
+          href={props.content.url}>
+          <div className="overflow-hidden rounded-lg">
+            <Image
+              className="scale-125"
+              src={props.content.screenShot}
+              alt="" />
+          </div>
         </Link>
         <div className="p-6">
           <h5

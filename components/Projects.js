@@ -1,37 +1,41 @@
 import Link from "next/link";
 import { nanoid } from "nanoid";
-import Image from "next/image";
 import Card from "./Card";
-import tenzieScreenShot from "../public/images/tenzies-screenshot.png"
+import tenzieScreenShot from "../public/images/tenzies-screenshot.png";
+import memeScreenShot from "../public/images/meme-generator-screenshot.png";
+import travelScreenShot from "../public/images/travel-journal-screenshot.png";
+import quizScreenShot from "../public/images/quizzical-screenshot.png";
 
 export default function Projects() {
   const projs = [
     {
-      screenShot: "../public/images/tenzies-screenshot.png",
+      screenShot: tenzieScreenShot,
       title: "Tenzies",
       description: "This is tenzies",
       url: "/projects/tenzies"
     },
-
+    {
+      screenShot: memeScreenShot,
+      title: "Meme Generator",
+      description: "This is meme generator",
+      url: "/projects/meme-generator"
+    },
+    {
+      screenShot: travelScreenShot,
+      title: "Travel journal",
+      description: "This is travel journal",
+      url: "/projects/travel-journal"
+    },
+    {
+      screenShot: quizScreenShot,
+      title: "Quizzical",
+      description: "This is quizzical",
+      url: "/projects/quizzical"
+    }
   ];
   const projElements = projs.map((proj) => {
     return (
-      <div 
-        key={nanoid()} 
-        className="flex-none my-3 mr-8 w-2/3 rounded-lg bg-white shadow-lg">
-        <Link 
-          className="h-2/3"
-          href={proj.url}>
-          <Image 
-            src={proj.screenShot} 
-            alt="tenzies"
-            className="object-cover" />
-        </Link>
-        <div>
-          <h1>{proj.title}</h1>
-          <p>{proj.description}</p>
-        </div>
-      </div>
+      <Card content={proj} key={nanoid()} />
     );
   });
   return (
@@ -59,8 +63,7 @@ export default function Projects() {
         </Link>
       </div>
       <div className="flex flex-nowrap overflow-x-scroll items-start mb-8">
-        {/*projElements*/}
-        <Card content={projs[0]} />
+        {projElements}
       </div>
       <div>
       </div>
