@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { nanoid } from "nanoid";
 import Image from "next/image";
+import Card from "./Card";
 import tenzieScreenShot from "../public/images/tenzies-screenshot.png"
 
 export default function Projects() {
   const projs = [
     {
-      screenShot: tenzieScreenShot,
+      screenShot: "../public/images/tenzies-screenshot.png",
       title: "Tenzies",
       description: "This is tenzies",
       url: "/projects/tenzies"
@@ -15,13 +16,21 @@ export default function Projects() {
   ];
   const projElements = projs.map((proj) => {
     return (
-      <div key={nanoid()} className="flex-none mr-8 w-2/3 border">
-        <div className="">
-          <Image src={proj.screenShot} alt="tenzies" />
+      <div 
+        key={nanoid()} 
+        className="flex-none my-3 mr-8 w-2/3 rounded-lg bg-white shadow-lg">
+        <Link 
+          className="h-2/3"
+          href={proj.url}>
+          <Image 
+            src={proj.screenShot} 
+            alt="tenzies"
+            className="object-cover" />
+        </Link>
+        <div>
+          <h1>{proj.title}</h1>
+          <p>{proj.description}</p>
         </div>
-        <h1>{proj.title}</h1>
-        <p>{proj.description}</p>
-        <Link href={proj.url}>Link</Link>
       </div>
     );
   });
@@ -50,7 +59,8 @@ export default function Projects() {
         </Link>
       </div>
       <div className="flex flex-nowrap overflow-x-scroll items-start mb-8">
-        {projElements}
+        {/*projElements*/}
+        <Card content={projs[0]} />
       </div>
       <div>
       </div>
