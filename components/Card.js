@@ -1,5 +1,6 @@
 import Link from "next/link";
-import tenzieScreenShot from "../public/images/tenzies-screenshot.png"
+import tenzieScreenShot from "../public/images/tenzies-screenshot.png";
+import Image from "next/image";
 
 export default function Card(props) {
   return (
@@ -7,7 +8,7 @@ export default function Card(props) {
       <div
         className="block max-w-sm rounded-lg bg-white shadow-lg">
         <Link href={props.content.url}>
-          <img
+          <Image
             className="rounded-t-lg"
             src={tenzieScreenShot}
             alt="" />
