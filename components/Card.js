@@ -3,16 +3,15 @@ import Image from "next/image";
 
 export default function Card(props) {
   return (
-    <div className="flex justify-center">
-      <div className="block max-w-sm rounded-lg bg-zinc-200 shadow-lg">
+    <div className="flex justify-center ">
+      <div className="block max-w-xl rounded-lg bg-zinc-200 shadow-lg mr-5">
         <Link 
-          href={props.content.url}>
-          <div className="overflow-hidden rounded-lg">
-            <Image
-              className="scale-125"
-              src={props.content.screenShot}
-              alt="" />
-          </div>
+          href={props.content.url}
+          className="overflow-hidden rounded-lg">
+          <Image
+            className="scale-125"
+            src={props.content.screenShot}
+            alt="" />
         </Link>
         <div className="p-6">
           <h5
