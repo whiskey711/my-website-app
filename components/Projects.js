@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { nanoid } from "nanoid";
-import Card from "./Card";
+import ProjectItem from "./ProjectItem";
 import tenzieScreenShot from "../public/images/tenzies-screenshot.png";
 import memeScreenShot from "../public/images/meme-generator-screenshot.png";
 import travelScreenShot from "../public/images/travel-journal-screenshot.png";
 import quizScreenShot from "../public/images/quizzical-screenshot.png";
+import Image from "next/image";
 
 export default function Projects() {
   const projs = [
@@ -33,15 +34,26 @@ export default function Projects() {
       url: "/projects/quizzical"
     }
   ];
+  /*
   const projElements = projs.map((proj) => {
     return (
-      <Card content={proj} key={nanoid()} />
+      <ProjectItem content={proj} key={nanoid()} />
     );
-  });
+  });*/
   return (
     <div className="border border-blue-600 min-h-screen">
-      <div className="flex flex-nowrap overflow-x-auto items-start mb-8">
-        {projElements}
+      <div className="grid grid-cols-2 gap-5">
+        {/*projElements*/}
+        
+        <div className="relative flex justify-center items-center group">
+          <Image src={tenzieScreenShot} alt="" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden group-hover:block">
+            <h1>Title</h1>
+            <p>Description</p>
+            <Link href="/">Check</Link>
+          </div>
+        </div>
+
       </div>
     </div>
   );
