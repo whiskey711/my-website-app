@@ -18,6 +18,12 @@ module.exports = {
         'impact': ['Maximum Impact', 'sans-serif']
       }
     },
+    colors: {
+      "china-red": "#cc0000",
+      "estonia-blue": "#0072ce",
+      // #f9f7f7 #dbe2ef #3f72af #112d4e
+      // #2D4059 #EA5455 #F07B3F #FFD460
+    }
   },
   plugins: [
     plugin(function ({ matchUtilities, theme }) {
