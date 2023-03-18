@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import About from '@/components/About'
-import Projects from '@/components/projects'
+import Projects from '@/components/Projects'
 import HomeSec from '@/components/HomeSec'
 import Image from 'next/image'
 import Contact from '@/components/Contact'
