@@ -16,13 +16,20 @@ module.exports = {
       fontFamily: {
         "bungee": ['Bungee', 'cursive'],
         'impact': ['Maximum Impact', 'sans-serif']
+      },
+      colors: {
+        "oxford-blue": "#14213D",
+        "orange-peel": "#FCA311",
+        "platinum": "#E5E5E5",
+        "jet-black": "#353535",
+        "current-green": "#3C6E71",
+        "indigo-dye": "#284B63",
+        "space-cadet": "#2B2D42",
+        "cool-gray": "#8D99AE",
+        "anti-flash-white": "#EDF2F4",
+        "phantone-red": "#EF233C",
+        "fire-engine-red": "#D90429"
       }
-    },
-    colors: {
-      "china-red": "#cc0000",
-      "estonia-blue": "#0072ce",
-      // #f9f7f7 #dbe2ef #3f72af #112d4e
-      // #2D4059 #EA5455 #F07B3F #FFD460
     }
   },
   plugins: [
@@ -36,5 +43,5 @@ module.exports = {
         { values: theme('textShadow') }
       )
     }),
-  ],
+  ]
 }
