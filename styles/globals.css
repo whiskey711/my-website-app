@@ -10,6 +10,9 @@
   html {
     font-family: 'Karla', sans-serif;
   }
+  html::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer components {
@@ -18,5 +21,8 @@
   }
   .error-msg {
     @apply text-xs text-neutral-500
+  }
+  .scroller-hide::-webkit-scrollbar {
+    display: none;
   }
 }
