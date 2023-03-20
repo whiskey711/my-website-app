@@ -5,6 +5,7 @@ import tenzieScreenShot from "../public/images/tenzies-screenshot.png";
 import memeScreenShot from "../public/images/meme-generator-screenshot.png";
 import travelScreenShot from "../public/images/travel-journal-screenshot.png";
 import quizScreenShot from "../public/images/quizzical-screenshot.png";
+import replacement from "../public/images/maxresdefault.jpg";
 import Image from "next/image";
 
 export default function Projects() {
@@ -32,6 +33,12 @@ export default function Projects() {
       title: "Quizzical",
       description: "This is quizzical",
       url: "/projects/quizzical"
+    },
+    {
+      screenShot: replacement,
+      title: "Games",
+      description: "Some poker games",
+      url: "/projects/games"
     }
   ];
 
