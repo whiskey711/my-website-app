@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import BlackjackCover from "./BlackjackCover";
 
 export default function BlackjackInterface() {
   const [deck, setDeck] = useState([]);
   const [playerCardsElements, setPlayerCardsElements] = useState([]);
-  let playerCards = [];
+  const [playerCards, setPlayerCards] = useState([]);
   const [playerCount, setPlayerCount] = useState(0);
   useEffect(() => {
     setDeck(getDeck());
-
   }, []);
+  useEffect(() => {
+    hitCard();
+  }, [deck]);
 
   function getDeck() {
-    const ranks = ["2", " 3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
+    const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
     const suits = ["clubs", "diamonds", "hearts", "spades"];
     let newDeck = [];
     for (let i=0; i<suits.length; i++) {
@@ -35,26 +36,36 @@ export default function BlackjackInterface() {
     return newDeck;
   }
   function hitCard() {
-    const draw = deck.pop();
-    setPlayerCardsElements(playerCardsElements.concat(
+    const updatedDeck = deck;
+    const draw = updatedDeck.pop();
+    setDeck(updatedDeck);
+    setPlayerCardsElements([
+      ...playerCardsElements,
       <div className="mr-2 my-3">
         {draw.rank + "_of_" + draw.suit}
       </div>
-    ));
-    playerCards.push(draw);
+    ]);
+    setPlayerCards([
+      ...playerCards,
+      draw
+    ]);
+    let rank = 0;
     if (/\d/.test(draw.rank)) {
-      setPlayerCount(prevCount => prevCount + parseInt(draw.rank));
+      rank = parseInt(draw.rank);
     }else {
-      setPlayerCount(prevCount => prevCount + 11); 
+      rank = 11; 
     }
-    if (playerCount > 21 && checkAce(playerCards)) {
-      setPlayerCount(prevCount => prevCount - 10);
+    if (playerCount+rank > 21 && checkAce()) {
+      rank = 1;
     }
+    setPlayerCount((prevC) => prevC + rank);
   }
-  function checkAce(cards) {
-    const aceIndex = cards.findIndex((card) => card.rank === "ace");
+  function checkAce() {
+    const aceIndex = playerCards.findIndex((card) => card.rank === "ace");
     if (aceIndex != -1) {
-      cards.splice(aceIndex, 1);
+      const updatedCards = playerCards;
+      updatedCards.splice(aceIndex, 1);
+      setPlayerCards(updatedCards);
       return true;
     }else{
       return false;
