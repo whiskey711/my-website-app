@@ -2,16 +2,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function BlackjackInterface() {
-  const [deck, setDeck] = useState([]);
+  const [deck, setDeck] = useState(getDeck());
   const [playerCardsElements, setPlayerCardsElements] = useState([]);
   const [playerCards, setPlayerCards] = useState([]);
   const [playerCount, setPlayerCount] = useState(0);
   useEffect(() => {
-    setDeck(getDeck());
+    startGame();
   }, []);
-  useEffect(() => {
-    hitCard();
-  }, [deck]);
 
   function getDeck() {
     const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
@@ -35,20 +32,57 @@ export default function BlackjackInterface() {
     }
     return newDeck;
   }
+  function startGame() {
+    const updatedDeck = deck;
+    const draw1 = updatedDeck.pop();
+    const draw2 = updatedDeck.pop();
+    setDeck(updatedDeck);
+    setPlayerCardsElements((prevElements) => [
+      ...prevElements,
+      <div className="mr-2 my-3">
+        {draw1.rank + "_of_" + draw1.suit}
+      </div>
+    ]);
+    setPlayerCardsElements((prevElements) => [
+      ...prevElements,
+      <div className="mr-2 my-3">
+        {draw2.rank + "_of_" + draw2.suit}
+      </div>
+    ]);
+    setPlayerCards((prevCards) => [...prevCards, draw1]);
+    setPlayerCards((prevCards) => [...prevCards, draw2]);
+    let rank1 = 0;
+    if (/\d/.test(draw1.rank)) {
+      rank1 = parseInt(draw1.rank);
+    }else {
+      rank1 = 11; 
+    }
+    if (playerCount+rank1 > 21 && checkAce()) {
+      rank1 = 1;
+    }
+    setPlayerCount((prevC) => prevC + rank1);
+    let rank2 = 0;
+    if (/\d/.test(draw2.rank)) {
+      rank2 = parseInt(draw2.rank);
+    }else {
+      rank2 = 11; 
+    }
+    if (playerCount+rank2 > 21 && checkAce()) {
+      rank2 = 1;
+    }
+    setPlayerCount((prevC) => prevC + rank2);
+  }
   function hitCard() {
     const updatedDeck = deck;
     const draw = updatedDeck.pop();
     setDeck(updatedDeck);
-    setPlayerCardsElements([
-      ...playerCardsElements,
+    setPlayerCardsElements((prevElements) => [
+      ...prevElements,
       <div className="mr-2 my-3">
         {draw.rank + "_of_" + draw.suit}
       </div>
     ]);
-    setPlayerCards([
-      ...playerCards,
-      draw
-    ]);
+    setPlayerCards((prevCards) => [...prevCards, draw]);
     let rank = 0;
     if (/\d/.test(draw.rank)) {
       rank = parseInt(draw.rank);
