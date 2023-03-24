@@ -15,7 +15,7 @@ export default function BlackjackInterface() {
     if (playerCount > 21 && checkAce()) {
       setPlayerCount(prevPlayerCount => prevPlayerCount - 10);
     }
-  }, [playerCards])
+  }, [playerCards]);
 
   function getDeck() {
     const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
@@ -52,8 +52,10 @@ export default function BlackjackInterface() {
     let rank = 0;
     if (/\d/.test(draw.rank)) {
       rank = parseInt(draw.rank);
-    }else {
+    }else if (draw.rank === "ace") {
       rank = 11; 
+    }else {
+      rank = 10;
     }
     setPlayerCount((prevC) => prevC + rank);
   }
@@ -86,7 +88,7 @@ export default function BlackjackInterface() {
           Score: {playerCount}
         </div>
         <button onClick={hitCard}>Hit</button>
-        <button>Stay</button>
+        <button>Stand</button>
       </div>
     </div>
   );
