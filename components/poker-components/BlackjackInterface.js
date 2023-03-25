@@ -4,19 +4,43 @@ import { nanoid } from "nanoid";
 
 export default function BlackjackInterface() {
   const [deck, setDeck] = useState(() => getDeck());
-  const [playerCardsElements, setPlayerCardsElements] = useState([]);
   const [playerCards, setPlayerCards] = useState([]);
   const [playerCount, setPlayerCount] = useState(0);
+  const [playerAces, setPlayerAces] = useState(0);
+  const [playerBusted, setPlayerBusted] = useState(false);
+
+  const [dealer, setDealer] = useState({
+    handCards: [],
+    aces: 0,
+    sum: 0,
+    busted: false
+  });
+  const [player, setPlayer] = useState({
+    handCards: [],
+    aces: 0,
+    sum: 0,
+    busted: false
+  });
+
+  const playerCardsElements = player.handCards.map((card) => {
+    return (
+      <div key={nanoid()} className="mr-2 my-3">
+        {card.rank + "_of_" + card.suit}
+      </div>
+    );
+  });
+
   useEffect(() => {
-    hitCard();
-    //hitCard();
+    startGame();
   }, []);
   useEffect(() => {
-    if (playerCount > 21 && checkAce()) {
-      setPlayerCount(prevPlayerCount => prevPlayerCount - 10);
-    }
-  }, [playerCards]);
+    isBusted();
+  }, [player]);
+  
+  // hit two cards for both dealer and player, dealer's first card is hidden
+  function startGame() {
 
+  }
   function getDeck() {
     const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
     const suits = ["clubs", "diamonds", "hearts", "spades"];
@@ -39,36 +63,36 @@ export default function BlackjackInterface() {
     return newDeck;
   }
   function hitCard() {
-    const updatedDeck = deck;
+    let updatedDeck = deck;
     const draw = updatedDeck.pop();
     setDeck(updatedDeck);
-    setPlayerCardsElements((prevElements) => [
-      ...prevElements,
-      <div key={nanoid()} className="mr-2 my-3">
-        {draw.rank + "_of_" + draw.suit}
-      </div>
-    ]);
-    setPlayerCards((prevCards) => [...prevCards, draw]);
+    //setPlayerCards((prevCards) => [...prevCards, draw]);
+    const updatedPlayer = player;
     let rank = 0;
     if (/\d/.test(draw.rank)) {
       rank = parseInt(draw.rank);
     }else if (draw.rank === "ace") {
       rank = 11; 
+      //setPlayerAces(prevAces => prevAces + 1);
+      updatedPlayer.aces++;
     }else {
       rank = 10;
     }
-    setPlayerCount((prevC) => prevC + rank);
+    //setPlayerCount((prevC) => prevC + rank);
+    updatedPlayer.handCards.push(draw);
+    updatedPlayer.sum += rank;
+    setPlayer(updatedPlayer);
+    console.log(updatedPlayer);
   }
-  function checkAce() {
-    const aceIndex = playerCards.findIndex((card) => card.rank === "ace");
-    if (aceIndex != -1) {
-      const updatedCards = playerCards;
-      updatedCards.splice(aceIndex, 1);
-      setPlayerCards(updatedCards);
-      return true;
-    }else{
-      return false;
+  function isBusted() {
+    if (player.sum <= 21) return;
+    let updatedPlayer = player;
+    while (updatedPlayer.sum > 21 && updatedPlayer.aces > 0) {
+      updatedPlayer.sum -= 10;
+      updatedPlayer.aces--;
     }
+    if (updatedPlayer.aces > 21) updatedPlayer.busted = true;
+    setPlayer(updatedPlayer);
   }
 
   return (
@@ -85,10 +109,18 @@ export default function BlackjackInterface() {
           {playerCardsElements}
         </div>
         <div>
-          Score: {playerCount}
+          Score: {player.sum}
         </div>
-        <button onClick={hitCard}>Hit</button>
-        <button>Stand</button>
+        {player.busted &&
+        <div>
+          <p>Busted, you lose</p>  
+          <button>New Game</button>
+        </div>}
+        {!player.busted &&
+        <div>
+          <button onClick={hitCard}>Hit</button>
+          <button>Stand</button>
+        </div>}
       </div>
     </div>
   );
