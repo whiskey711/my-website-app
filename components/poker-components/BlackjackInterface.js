@@ -5,41 +5,48 @@ import { nanoid } from "nanoid";
 export default function BlackjackInterface() {
   const [deck, setDeck] = useState(() => getDeck());
   const [playerCards, setPlayerCards] = useState([]);
-  const [playerCount, setPlayerCount] = useState(0);
-  const [playerAces, setPlayerAces] = useState(0);
-  const [playerBusted, setPlayerBusted] = useState(false);
+  const [dealerCards, setDealerCards] = useState([]);
 
   const [dealer, setDealer] = useState({
-    handCards: [],
     aces: 0,
     sum: 0,
     busted: false
   });
   const [player, setPlayer] = useState({
-    handCards: [],
     aces: 0,
     sum: 0,
     busted: false
   });
 
-  const playerCardsElements = player.handCards.map((card) => {
+  const playerCardsElements = playerCards.map((card) => {
     return (
       <div key={nanoid()} className="mr-2 my-3">
         {card.rank + "_of_" + card.suit}
       </div>
     );
   });
+  const dealerCardsElements = dealerCards.map((card) => {
+    return (
+      <div key={nanoid()} className="mr-2 my-3">
+        {card.rank + "_of_" + card.suit}
+      </div>
+    );
+  })
 
   useEffect(() => {
     startGame();
   }, []);
   useEffect(() => {
     isBusted();
-  }, [player]);
+  }, [playerCards]);
   
   // hit two cards for both dealer and player, dealer's first card is hidden
   function startGame() {
-
+    let updatedDeck = deck;
+    const draw1 = updatedDeck.pop();
+    const draw2 = updatedDeck.pop();
+    setDealerCards([draw1, draw2]);
+    setDeck(updatedDeck);
   }
   function getDeck() {
     const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
@@ -66,23 +73,23 @@ export default function BlackjackInterface() {
     let updatedDeck = deck;
     const draw = updatedDeck.pop();
     setDeck(updatedDeck);
-    //setPlayerCards((prevCards) => [...prevCards, draw]);
+    setPlayerCards((prevCards) => [...prevCards, draw]);
     const updatedPlayer = player;
     let rank = 0;
     if (/\d/.test(draw.rank)) {
       rank = parseInt(draw.rank);
     }else if (draw.rank === "ace") {
       rank = 11; 
-      //setPlayerAces(prevAces => prevAces + 1);
       updatedPlayer.aces++;
     }else {
       rank = 10;
     }
-    //setPlayerCount((prevC) => prevC + rank);
-    updatedPlayer.handCards.push(draw);
     updatedPlayer.sum += rank;
-    setPlayer(updatedPlayer);
-    console.log(updatedPlayer);
+    setPlayer({
+      ...player,
+      aces: updatedPlayer.aces,
+      sum: updatedPlayer.sum
+    });
   }
   function isBusted() {
     if (player.sum <= 21) return;
@@ -91,18 +98,28 @@ export default function BlackjackInterface() {
       updatedPlayer.sum -= 10;
       updatedPlayer.aces--;
     }
-    if (updatedPlayer.aces > 21) updatedPlayer.busted = true;
-    setPlayer(updatedPlayer);
+    if (updatedPlayer.sum > 21) updatedPlayer.busted = true;
+    setPlayer({
+      ...player,
+      sum: updatedPlayer.sum,
+      aces: updatedPlayer.aces,
+      busted: updatedPlayer.busted
+    });
+    console.log("here");
   }
 
   return (
     <div>
       <div>
         <h1>Dealer</h1>
+        <div className="flex">
+          {dealerCardsElements}
+        </div>
         <div>
-
+          Score: {dealer.sum}
         </div>
       </div>
+      <hr />
       <div>
         <h1>You</h1>
         <div className="flex">
