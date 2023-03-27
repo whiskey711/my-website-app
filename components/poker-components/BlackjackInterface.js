@@ -38,15 +38,17 @@ export default function BlackjackInterface() {
   }, []);
   useEffect(() => {
     isBusted();
-  }, [playerCards]);
+  }, [playerCards, dealerCards]);
   
   // hit two cards for both dealer and player, dealer's first card is hidden
   function startGame() {
     let updatedDeck = deck;
     const draw1 = updatedDeck.pop();
     const draw2 = updatedDeck.pop();
-    setDealerCards([draw1, draw2]);
+    const draw3 = updatedDeck.pop();
+    const draw4 = updatedDeck.pop();
     setDeck(updatedDeck);
+    
   }
   function getDeck() {
     const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
@@ -71,41 +73,69 @@ export default function BlackjackInterface() {
   }
   function hitCard() {
     let updatedDeck = deck;
-    const draw = updatedDeck.pop();
+    const card = updatedDeck.pop();
     setDeck(updatedDeck);
-    setPlayerCards((prevCards) => [...prevCards, draw]);
-    const updatedPlayer = player;
-    let rank = 0;
-    if (/\d/.test(draw.rank)) {
-      rank = parseInt(draw.rank);
-    }else if (draw.rank === "ace") {
-      rank = 11; 
-      updatedPlayer.aces++;
-    }else {
-      rank = 10;
+    let draw = {
+      hand: card,
+      sum: 0,
+      aces: 0
     }
-    updatedPlayer.sum += rank;
-    setPlayer({
-      ...player,
-      aces: updatedPlayer.aces,
-      sum: updatedPlayer.sum
-    });
+    if (/\d/.test(card.rank)) {
+      draw.sum = parseInt(card.rank);
+    }else if (card.rank === "ace") {
+      draw.sum = 11; 
+      draw.aces = 1;
+    }else {
+      draw.sum = 10;
+    }
+    return draw;
   }
   function isBusted() {
-    if (player.sum <= 21) return;
-    let updatedPlayer = player;
-    while (updatedPlayer.sum > 21 && updatedPlayer.aces > 0) {
-      updatedPlayer.sum -= 10;
-      updatedPlayer.aces--;
+    if (player.sum > 21) {
+      let updatedPlayer = player;
+      while (updatedPlayer.sum > 21 && updatedPlayer.aces > 0) {
+        updatedPlayer.sum -= 10;
+        updatedPlayer.aces--;
+      }
+      if (updatedPlayer.sum > 21) updatedPlayer.busted = true;
+      setPlayer({
+        ...player,
+        sum: updatedPlayer.sum,
+        aces: updatedPlayer.aces,
+        busted: updatedPlayer.busted
+      });
+    }else if (dealer.sum > 21){
+      let updatedDealer = dealer;
+      while (updatedDealer.sum > 21 && updatedDealer.aces > 0) {
+        updatedDealer.sum -= 10;
+        updatedDealer.aces--;
+      }
+      if (updatedDealer.sum > 21) updatedDealer.busted = true;
+      setDealer({
+        ...dealer,
+        sum: updatedDealer.sum,
+        aces: updatedDealer.aces,
+        busted: updatedDealer.busted
+      });
     }
-    if (updatedPlayer.sum > 21) updatedPlayer.busted = true;
+  }
+  function dealerHit() {
+    const draw = hitCard();
+    setDealer({
+      ...dealer,
+      sum: dealer.sum + draw.sum,
+      aces: dealer.aces + draw.aces
+    });
+    setDealerCards([...dealerCards, draw.hand]);
+  }
+  function playerHit() {
+    const draw = hitCard();
     setPlayer({
       ...player,
-      sum: updatedPlayer.sum,
-      aces: updatedPlayer.aces,
-      busted: updatedPlayer.busted
+      sum: player.sum + draw.sum,
+      aces: player.aces + draw.aces
     });
-    console.log("here");
+    setPlayerCards([...playerCards, draw.hand]);
   }
 
   return (
@@ -135,7 +165,7 @@ export default function BlackjackInterface() {
         </div>}
         {!player.busted &&
         <div>
-          <button onClick={hitCard}>Hit</button>
+          <button onClick={playerHit}>Hit</button>
           <button>Stand</button>
         </div>}
       </div>
