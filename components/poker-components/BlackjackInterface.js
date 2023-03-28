@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Image from "next/image";
 import { nanoid } from "nanoid";
 
 export default function BlackjackInterface() {
   const [deck, setDeck] = useState(() => getDeck());
   const [playerCards, setPlayerCards] = useState([]);
+  const [playerWon, setPlayerWon] = useState(false);
+  const [playerStand, setPlayerStand] = useState(false);
   const [dealerCards, setDealerCards] = useState([]);
+  const [dealerWon, setDealerWon] = useState(false);
+  const [dealerStand, setDealerStand] = useState(false);
 
   const [dealer, setDealer] = useState({
     aces: 0,
     sum: 0,
-    busted: false,
+    bust: false,
   });
   const [player, setPlayer] = useState({
     aces: 0,
     sum: 0,
-    busted: false,
-    stand: false
+    bust: false,
   });
 
   const playerCardsElements = playerCards.map((card) => {
@@ -40,26 +43,33 @@ export default function BlackjackInterface() {
   useEffect(() => {
     isBusted();
   }, [playerCards, dealerCards]);
+  useEffect(() => {
+    if (dealerStand) {
+      compare();
+    }
+  }, [dealerStand])
   
   function newGame() {
     setDeck(getDeck());
   }
   // hit two cards for both dealer and player, dealer's first card is hidden
-  function startGame() {
-    const dealerDraw1 = hitCard();    
+  function startGame() {    
     const playerDraw1 = hitCard();    
-    const dealerDraw2 = hitCard();    
-    const playerDraw2 = hitCard();    
+    const dealerDraw1 = hitCard();  
+    const playerDraw2 = hitCard();
+    const dealerDraw2 = hitCard();   
+    setDealerWon(false);   
     setDealer({
       aces: dealerDraw1.aces + dealerDraw2.aces,
       sum: dealerDraw1.sum + dealerDraw2.sum,
-      busted: false
+      bust: false
     });
     setDealerCards([dealerDraw1.hand, dealerDraw2.hand]);
+    setPlayerWon(false);
     setPlayer({
       aces: playerDraw1.aces + playerDraw2.aces,
       sum: playerDraw1.sum + playerDraw2.sum,
-      busted: false,
+      bust: false,
       stand: false
     });
     setPlayerCards([playerDraw1.hand, playerDraw2.hand]);
@@ -111,12 +121,12 @@ export default function BlackjackInterface() {
         updatedPlayer.sum -= 10;
         updatedPlayer.aces--;
       }
-      if (updatedPlayer.sum > 21) updatedPlayer.busted = true;
+      if (updatedPlayer.sum > 21) updatedPlayer.bust = true;
       setPlayer({
         ...player,
         sum: updatedPlayer.sum,
         aces: updatedPlayer.aces,
-        busted: updatedPlayer.busted
+        bust: updatedPlayer.bust
       });
     }else if (dealer.sum > 21){
       let updatedDealer = dealer;
@@ -124,39 +134,14 @@ export default function BlackjackInterface() {
         updatedDealer.sum -= 10;
         updatedDealer.aces--;
       }
-      if (updatedDealer.sum > 21) updatedDealer.busted = true;
+      if (updatedDealer.sum > 21) updatedDealer.bust = true;
       setDealer({
         ...dealer,
         sum: updatedDealer.sum,
         aces: updatedDealer.aces,
-        busted: updatedDealer.busted
+        bust: updatedDealer.bust
       });
     }
-  }
-  // function dealerHit() {
-  //   const draw = hitCard();
-  //   setDealer({
-  //     ...dealer,
-  //     sum: dealer.sum + draw.sum,
-  //     aces: dealer.aces + draw.aces
-  //   });
-  //   setDealerCards([...dealerCards, draw.hand]);
-  // }
-  function dealerTurn() {
-    let updatedDealer = dealer;
-    let updatedDealerCards = dealerCards;
-    while (updatedDealer.sum < 17) {
-      const draw = hitCard();
-      updatedDealer.sum += draw.sum;
-      updatedDealer.aces += draw.aces;
-      updatedDealerCards.push(draw.hand);
-    }
-    setDealer({
-      ...dealer,
-      sum: updatedDealer.sum,
-      aces: updatedDealer.aces
-    });
-    setDealerCards(dealerCards.concat(updatedDealerCards));
   }
   function playerHit() {
     const draw = hitCard();
@@ -168,11 +153,28 @@ export default function BlackjackInterface() {
     setPlayerCards([...playerCards, draw.hand]);
   }
   function playerStand() {
-    setPlayer({
-      ...player,
-      stand: true
-    });
+    setPlayerStand(true);
     dealerTurn();
+  }
+  function dealerTurn() {
+    let updatedDealer = dealer;
+    let newCards = [];
+    while (updatedDealer.sum < 17) {
+      const draw = hitCard();
+      updatedDealer.sum += draw.sum;
+      updatedDealer.aces += draw.aces;
+      newCards.push(draw.hand);
+    }
+    setDealer({
+      ...dealer,
+      sum: updatedDealer.sum,
+      aces: updatedDealer.aces,
+    });
+    setDealerCards(dealerCards.concat(newCards));
+    setDealerStand(true);
+  }
+  function compare() {
+    
   }
 
   return (
@@ -185,8 +187,13 @@ export default function BlackjackInterface() {
         <div>
           Score: {dealer.sum}
         </div>
-        {dealer.busted && <p>Busted, dealer lose</p>}
       </div>
+      <hr />
+      {dealer.bust && <p>Dealer bust, you won</p>}
+      {player.bust && <p>You bust, you lose</p>} 
+      {(playerWon && !dealerWon) && <p>You have greater hand, you won</p>}
+      {(!playerWon && dealerWon) && <p>Dealer have greater hand, you lose</p>}
+      {(playerWon && dealerWon) && <p>Draw</p>}
       <hr />
       <div>
         <h1>You</h1>
@@ -196,12 +203,11 @@ export default function BlackjackInterface() {
         <div>
           Score: {player.sum}
         </div>
-        <div>
-          {player.busted && <p>Busted, you lose</p>}  
-          {(player.busted || dealer.busted) && 
+        <div>          
+          {(player.bust || dealer.bust || dealerWon || playerWon) && 
           <button onClick={newGame}>New Game</button>}
         </div>
-        {!(player.busted || player.stand) &&
+        {!(player.bust || playerStand) &&
         <div>
           <button onClick={playerHit}>Hit</button>
           <button onClick={playerStand}>Stand</button>
