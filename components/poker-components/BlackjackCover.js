@@ -1,4 +1,9 @@
+import Image from "next/image";
+import { nanoid } from "nanoid";
+import { useState } from "react";
+
 export default function BlackjackCover(props) {
+
   return (
     <div>
       <h1>Blackjack</h1>

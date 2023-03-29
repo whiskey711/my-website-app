@@ -25,14 +25,14 @@ export default function BlackjackInterface() {
   const playerCardsElements = playerCards.map((card) => {
     return (
       <div key={nanoid()} className="mr-2 my-3">
-        {card.rank + "_of_" + card.suit}
+        <img src={"/poker/" + card.rank + "_of_" + card.suit + ".svg"} alt="poker" />
       </div>
     );
   });
   const dealerCardsElements = dealerCards.map((card) => {
     return (
       <div key={nanoid()} className="mr-2 my-3">
-        {card.rank + "_of_" + card.suit}
+        <img src={"/poker/" + card.rank + "_of_" + card.suit + ".svg"} alt="poker" />
       </div>
     );
   })
@@ -44,7 +44,7 @@ export default function BlackjackInterface() {
     isBusted();
   }, [playerCards, dealerCards]);
   useEffect(() => {
-    if (dealerStand) {
+    if (dealerStand && !dealer.bust) {
       compare();
     }
   }, [dealerStand])
@@ -53,11 +53,11 @@ export default function BlackjackInterface() {
     setDeck(getDeck());
   }
   // hit two cards for both dealer and player, dealer's first card is hidden
-  function startGame() {    
-    const playerDraw1 = hitCard();    
+  function startGame() {   
+    const playerDraw1 = hitCard();  
     const dealerDraw1 = hitCard();  
     const playerDraw2 = hitCard();
-    const dealerDraw2 = hitCard();   
+    const dealerDraw2 = hitCard();  
     setDealerWon(false);   
     setDealer({
       aces: dealerDraw1.aces + dealerDraw2.aces,
@@ -65,14 +65,15 @@ export default function BlackjackInterface() {
       bust: false
     });
     setDealerCards([dealerDraw1.hand, dealerDraw2.hand]);
+    setDealerStand(false);
     setPlayerWon(false);
     setPlayer({
       aces: playerDraw1.aces + playerDraw2.aces,
       sum: playerDraw1.sum + playerDraw2.sum,
-      bust: false,
-      stand: false
+      bust: false
     });
     setPlayerCards([playerDraw1.hand, playerDraw2.hand]);
+    setPlayerStand(false);
   }
   function getDeck() {
     const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
@@ -87,6 +88,49 @@ export default function BlackjackInterface() {
       }
     }
     return shuffle(newDeck);
+    // let dummy = [
+    //   {
+    //     rank: "ace",
+    //     suit: "diamonds"
+    //   },
+    //   {
+    //     rank: "2",
+    //     suit: "hearts"
+    //   },
+    //   {
+    //     rank: "7",
+    //     suit: "clubs"
+    //   },
+    //   {
+    //     rank: "6",
+    //     suit: "diamonds"
+    //   },
+    //   {
+    //     rank: "4",
+    //     suit: "hearts"
+    //   },
+    //   {
+    //     rank: "jack",
+    //     suit: "spades"
+    //   },
+    //   {
+    //     rank: "joker",
+    //     suit: "all"
+    //   },
+    //   {
+    //     rank: "joker",
+    //     suit: "all"
+    //   },
+    //   {
+    //     rank: "joker",
+    //     suit: "all"
+    //   },
+    //   {
+    //     rank: "joker",
+    //     suit: "all"
+    //   }
+    // ];
+    // return dummy;
   }
   function shuffle(newDeck) {
     for (let i = newDeck.length-1; i>0; i--) {
@@ -104,6 +148,7 @@ export default function BlackjackInterface() {
       sum: 0,
       aces: 0
     }
+    console.log(card.rank);
     if (/\d/.test(card.rank)) {
       draw.sum = parseInt(card.rank);
     }else if (card.rank === "ace") {
@@ -152,7 +197,7 @@ export default function BlackjackInterface() {
     });
     setPlayerCards([...playerCards, draw.hand]);
   }
-  function playerStand() {
+  function playerEndTurn() {
     setPlayerStand(true);
     dealerTurn();
   }
@@ -174,11 +219,18 @@ export default function BlackjackInterface() {
     setDealerStand(true);
   }
   function compare() {
-    
+    if (dealer.sum > player.sum) {
+      setDealerWon(true);
+    }else if (dealer.sum < player.sum) {
+      setPlayerWon(true);
+    }else {
+      setPlayerWon(true);
+      setDealerWon(true);
+    }
   }
 
   return (
-    <div>
+    <div className="max-h-screen border border-green-500 grid grid-rows-3">
       <div>
         <h1>Dealer</h1>
         <div className="flex">
@@ -188,14 +240,14 @@ export default function BlackjackInterface() {
           Score: {dealer.sum}
         </div>
       </div>
-      <hr />
-      {dealer.bust && <p>Dealer bust, you won</p>}
-      {player.bust && <p>You bust, you lose</p>} 
-      {(playerWon && !dealerWon) && <p>You have greater hand, you won</p>}
-      {(!playerWon && dealerWon) && <p>Dealer have greater hand, you lose</p>}
-      {(playerWon && dealerWon) && <p>Draw</p>}
-      <hr />
       <div>
+        {dealer.bust && <p>Dealer bust, you won</p>}
+        {player.bust && <p>You bust, you lose</p>} 
+        {(playerWon && !dealerWon) && <p>You have greater hand, you won</p>}
+        {(!playerWon && dealerWon) && <p>Dealer have greater hand, you lose</p>}
+        {(playerWon && dealerWon) && <p>Draw</p>}
+      </div>
+      <div className="">
         <h1>You</h1>
         <div className="flex">
           {playerCardsElements}
@@ -210,7 +262,7 @@ export default function BlackjackInterface() {
         {!(player.bust || playerStand) &&
         <div>
           <button onClick={playerHit}>Hit</button>
-          <button onClick={playerStand}>Stand</button>
+          <button onClick={playerEndTurn}>Stand</button>
         </div>}
       </div>
     </div>
