@@ -1,5 +1,5 @@
-import { use, useEffect, useState } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import PokerCard from "./PokerCard";
 import { nanoid } from "nanoid";
 
 export default function BlackjackInterface() {
@@ -23,18 +23,10 @@ export default function BlackjackInterface() {
   });
 
   const playerCardsElements = playerCards.map((card) => {
-    return (
-      <div key={nanoid()} className="mr-2 my-3">
-        <img src={"/poker/" + card.rank + "_of_" + card.suit + ".svg"} alt="poker" />
-      </div>
-    );
+    return <PokerCard card={card} />;
   });
   const dealerCardsElements = dealerCards.map((card) => {
-    return (
-      <div key={nanoid()} className="mr-2 my-3">
-        <img src={"/poker/" + card.rank + "_of_" + card.suit + ".svg"} alt="poker" />
-      </div>
-    );
+    return <PokerCard card={card} />;
   })
 
   useEffect(() => {
@@ -230,40 +222,36 @@ export default function BlackjackInterface() {
   }
 
   return (
-    <div className="max-h-screen border border-green-500 grid grid-rows-3">
-      <div>
-        <h1>Dealer</h1>
-        <div className="flex">
-          {dealerCardsElements}
+    <div className="min-h-screen bg-yellow-300 flex justify-center items-center">
+      <div className="bg-white w-2/3 rounded-lg">
+        <div className="text-center">
+          <h1>Dealer <span>{dealer.sum}</span></h1>
+          <div className="flex justify-center">
+            {dealerCardsElements}
+          </div>
         </div>
-        <div>
-          Score: {dealer.sum}
+        <div className="text-center">
+          {dealer.bust && <p>Dealer bust, you won</p>}
+          {player.bust && <p>You bust, you lose</p>} 
+          {(playerWon && !dealerWon) && <p>You have greater hand, you won</p>}
+          {(!playerWon && dealerWon) && <p>Dealer have greater hand, you lose</p>}
+          {(playerWon && dealerWon) && <p>Draw</p>}
         </div>
-      </div>
-      <div>
-        {dealer.bust && <p>Dealer bust, you won</p>}
-        {player.bust && <p>You bust, you lose</p>} 
-        {(playerWon && !dealerWon) && <p>You have greater hand, you won</p>}
-        {(!playerWon && dealerWon) && <p>Dealer have greater hand, you lose</p>}
-        {(playerWon && dealerWon) && <p>Draw</p>}
-      </div>
-      <div className="">
-        <h1>You</h1>
-        <div className="flex">
-          {playerCardsElements}
+        <div className="text-center">
+          <h1>You</h1>
+          <div className="flex justify-center">
+            {playerCardsElements}
+          </div>
+          <div>          
+            {(player.bust || dealer.bust || dealerWon || playerWon) && 
+            <button onClick={newGame}>New Game</button>}
+          </div>
+          {!(player.bust || playerStand) &&
+          <div>
+            <button onClick={playerHit}>Hit</button>
+            <button onClick={playerEndTurn}>Stand</button>
+          </div>}
         </div>
-        <div>
-          Score: {player.sum}
-        </div>
-        <div>          
-          {(player.bust || dealer.bust || dealerWon || playerWon) && 
-          <button onClick={newGame}>New Game</button>}
-        </div>
-        {!(player.bust || playerStand) &&
-        <div>
-          <button onClick={playerHit}>Hit</button>
-          <button onClick={playerEndTurn}>Stand</button>
-        </div>}
       </div>
     </div>
   );

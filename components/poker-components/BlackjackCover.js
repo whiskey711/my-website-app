@@ -11,6 +11,10 @@ export default function BlackjackCover(props) {
       <div>
         <button onClick={props.startGame}>Start</button>
       </div>
+      <div 
+        className="h-32 w-32 bg-lime-300">
+        fade in right
+      </div>
     </div>
   );
 }

@@ -6,6 +6,9 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+    "animate-[fade-in-right_1s_ease_in_out]"
+  ],
   theme: {
     extend: {
       textShadow: {
