@@ -80,49 +80,6 @@ export default function BlackjackInterface() {
       }
     }
     return shuffle(newDeck);
-    // let dummy = [
-    //   {
-    //     rank: "ace",
-    //     suit: "diamonds"
-    //   },
-    //   {
-    //     rank: "2",
-    //     suit: "hearts"
-    //   },
-    //   {
-    //     rank: "7",
-    //     suit: "clubs"
-    //   },
-    //   {
-    //     rank: "6",
-    //     suit: "diamonds"
-    //   },
-    //   {
-    //     rank: "4",
-    //     suit: "hearts"
-    //   },
-    //   {
-    //     rank: "jack",
-    //     suit: "spades"
-    //   },
-    //   {
-    //     rank: "joker",
-    //     suit: "all"
-    //   },
-    //   {
-    //     rank: "joker",
-    //     suit: "all"
-    //   },
-    //   {
-    //     rank: "joker",
-    //     suit: "all"
-    //   },
-    //   {
-    //     rank: "joker",
-    //     suit: "all"
-    //   }
-    // ];
-    // return dummy;
   }
   function shuffle(newDeck) {
     for (let i = newDeck.length-1; i>0; i--) {
@@ -226,7 +183,7 @@ export default function BlackjackInterface() {
       <div className="bg-white w-2/3 rounded-lg">
         <div className="text-center">
           <h1>Dealer <span>{dealer.sum}</span></h1>
-          <div className="flex justify-center">
+          <div className="flex justify-center last:bg-black">
             {dealerCardsElements}
           </div>
         </div>
