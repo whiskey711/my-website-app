@@ -3,6 +3,13 @@ import { nanoid } from "nanoid";
 import { useState } from "react";
 
 export default function BlackjackCover(props) {
+  const [nums, setNums] = useState([0,1,2,3,4]);
+  const numElements = nums.map((num) => {
+    return (<div key={nanoid()}
+      className="h-32 w-32 m-5 border bg-lime-300 last:animate-slidein">
+      {num}
+    </div>);
+  })
 
   return (
     <div>
@@ -11,10 +18,11 @@ export default function BlackjackCover(props) {
       <div>
         <button onClick={props.startGame}>Start</button>
       </div>
-      <div 
-        className="h-32 w-32 bg-lime-300">
-        fade in right
+
+      <div className="flex">
+        {numElements}
       </div>
+
     </div>
   );
 }

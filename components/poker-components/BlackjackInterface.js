@@ -183,7 +183,7 @@ export default function BlackjackInterface() {
       <div className="bg-white w-2/3 rounded-lg">
         <div className="text-center">
           <h1>Dealer <span>{dealer.sum}</span></h1>
-          <div className="flex justify-center last:bg-black">
+          <div className="flex justify-center">
             {dealerCardsElements}
           </div>
         </div>
