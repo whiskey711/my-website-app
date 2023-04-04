@@ -29,6 +29,19 @@ module.exports = {
         "anti-flash-white": "#EDF2F4",
         "phantone-red": "#EF233C",
         "fire-engine-red": "#D90429"
+      },
+      animation: {
+        slidein: "slide 0.7s ease-in",
+        wiggle: "wiggle 1s ease-in-out infinite"
+      },
+      keyframes: {
+        slide: {
+          "0%": {transform: "translateX(20px)"},
+        },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        }
       }
     }
   },
