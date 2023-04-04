@@ -23,10 +23,10 @@ export default function BlackjackInterface() {
   });
 
   const playerCardsElements = playerCards.map((card) => {
-    return <PokerCard card={card} />;
+    return <PokerCard card={card} ind={-1} />;
   });
-  const dealerCardsElements = dealerCards.map((card) => {
-    return <PokerCard card={card} />;
+  const dealerCardsElements = dealerCards.map((card, index) => {
+    return <PokerCard card={card} ind={index} />;
   })
 
   useEffect(() => {
@@ -97,7 +97,6 @@ export default function BlackjackInterface() {
       sum: 0,
       aces: 0
     }
-    console.log(card.rank);
     if (/\d/.test(card.rank)) {
       draw.sum = parseInt(card.rank);
     }else if (card.rank === "ace") {
@@ -180,9 +179,9 @@ export default function BlackjackInterface() {
 
   return (
     <div className="min-h-screen bg-yellow-300 flex justify-center items-center">
-      <div className="bg-white w-2/3 rounded-lg">
+      <div className="bg-white w-2/3 rounded-lg p-5">
         <div className="text-center">
-          <h1>Dealer <span>{dealer.sum}</span></h1>
+          <h1>Dealer</h1>
           <div className="flex justify-center">
             {dealerCardsElements}
           </div>
@@ -195,18 +194,24 @@ export default function BlackjackInterface() {
           {(playerWon && dealerWon) && <p>Draw</p>}
         </div>
         <div className="text-center">
-          <h1>You</h1>
+          <h1>You {player.sum}</h1>
           <div className="flex justify-center">
             {playerCardsElements}
           </div>
           <div>          
             {(player.bust || dealer.bust || dealerWon || playerWon) && 
-            <button onClick={newGame}>New Game</button>}
+            <button 
+              className="bg-platinum py-1 px-4 rounded-md drop-shadow-lg"
+              onClick={newGame}>New Game</button>}
           </div>
           {!(player.bust || playerStand) &&
-          <div>
-            <button onClick={playerHit}>Hit</button>
-            <button onClick={playerEndTurn}>Stand</button>
+          <div className="space-x-5">
+            <button 
+              className="bg-platinum py-1 px-4 rounded-md drop-shadow-lg"
+              onClick={playerHit}>Hit</button>
+            <button 
+              className="bg-platinum py-1 px-4 rounded-md drop-shadow-lg"
+              onClick={playerEndTurn}>Stand</button>
           </div>}
         </div>
       </div>
