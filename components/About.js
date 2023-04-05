@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function About() {
   const selfIntro = <div className="text-lg space-y-5">
     <p>I'm a <b>Frontend Web Developer</b> building the Front-end of Websites and Web Applications that leads to the success of the overall product. Check out some of my work in the <b>Projects</b> section.</p>
@@ -5,11 +7,20 @@ export default function About() {
     <p>I'm open to Job opportunities where I can contribute, learn and grow. If you have a good opportunity that matches my skills and experience then don't hesitate to contact me.</p>
   </div>;
 
-  const skills = ["HTML", "CSS", "Tailwind", "JavaScript", "React.js", "Next.js", "Node.js", "Java", "Spring", "C#", ".NET", "MySql"];
+  const skills = ["HTML", "CSS", "Tailwind", "JavaScript", "React", "Next", "Java", "Spring", "CSharp", "dotNET", "MySql", "GitHub"];
   const skillsElement = skills.map((skill) => {
-    return <div className="py-2 px-3 bg-stone-300 rounded-md mr-3 mb-3 text-xl text-gray-700" key={skill}>
-      {skill}
-    </div>
+    return (
+      <div className="py-2 px-3 bg-stone-50 rounded-md mr-3 mb-3 text-md drop-shadow-lg hover:scale-105 transition" key={skill}>
+        <div className="flex justify-evenly">
+          <Image src={"/skills/" + skill + ".svg"} 
+            width={32}
+            height={32}
+            alt="logo"
+          />
+          {skill}
+        </div>
+      </div>
+    );
   });
 
   return (
@@ -32,7 +43,7 @@ export default function About() {
           </div>
           <div>
             <h1 className="text-2xl font-semibold mb-10">My Skills</h1>
-            <div className="flex flex-wrap">
+            <div className="grid grid-cols-2">
               {skillsElement}
             </div>
           </div>
