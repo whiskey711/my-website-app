@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function About() {
   const selfIntro = <div className="text-lg space-y-5">
     <p>I'm a <b>Frontend Web Developer</b> building the Front-end of Websites and Web Applications that leads to the success of the overall product. Check out some of my work in the <b>Projects</b> section.</p>
@@ -5,11 +7,69 @@ export default function About() {
     <p>I'm open to Job opportunities where I can contribute, learn and grow. If you have a good opportunity that matches my skills and experience then don't hesitate to contact me.</p>
   </div>;
 
-  const skills = ["HTML", "CSS", "Tailwind", "JavaScript", "React.js", "Next.js", "Node.js", "Java", "Spring", "C#", ".NET", "MySql"];
+  const skills = [
+    {
+      name: "HTML",
+      url: "HTML"
+    },
+    {
+      name: "CSS",
+      url: "CSS"
+    },
+    {
+      name: "Tailwind",
+      url: "Tailwind"
+    },
+    {
+      name: "JavaScript",
+      url: "JavaScript"
+    },
+    {
+      name: "React",
+      url: "React"
+    },
+    {
+      name: "Next",
+      url: "Next"
+    },
+    {
+      name: "Java",
+      url: "Java"
+    },
+    {
+      name: "Spring",
+      url: "Spring"
+    },
+    {
+      name: "C#",
+      url: "CSharp"
+    },
+    {
+      name: ".NET",
+      url: "dotNET"
+    },
+    {
+      name: "MySql",
+      url: "MySql"
+    },
+    {
+      name: "GitHub",
+      url: "GitHub"
+    },
+  ];
   const skillsElement = skills.map((skill) => {
-    return <div className="py-2 px-3 bg-stone-300 rounded-md mr-3 mb-3 text-xl text-gray-700" key={skill}>
-      {skill}
-    </div>
+    return (
+      <div className="py-3 px-3 bg-stone-50 rounded-md mr-3 mb-3 text-md drop-shadow-lg hover:scale-105 transition flex justify-evenly items-center" key={skill}>
+          <Image src={"/skills/" + skill.url + ".svg"}
+            width={40}
+            height={40}
+            alt="logo"
+          />
+          <p className="font-semibold">
+            {skill.name}
+          </p>
+      </div>
+    );
   });
 
   return (
@@ -18,7 +78,7 @@ export default function About() {
         <div>
           <h1 className="text-4xl font-bold my-5">About me</h1>
           <div>{selfIntro}</div>
-          <button 
+          <button
             className="px-10 py-3 bg-amber-400 text-xl mt-10 rounded-md drop-shadow-2xl hover:bg-amber-500">
             Contact
           </button>
@@ -32,7 +92,7 @@ export default function About() {
           </div>
           <div>
             <h1 className="text-2xl font-semibold mb-10">My Skills</h1>
-            <div className="flex flex-wrap">
+            <div className="grid grid-cols-2 gap-3">
               {skillsElement}
             </div>
           </div>
