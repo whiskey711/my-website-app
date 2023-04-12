@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
+import { AiOutlinePhone, AiOutlineMail, AiOutlineLinkedin } from "react-icons/ai";
 
 export default function Contact() {
 
@@ -17,23 +17,23 @@ export default function Contact() {
 
   return (
     <div className="w-full min-h-screen">
+      <div className="border mx-auto mt-20 w-1/2 text-center">
       <h1>Contact</h1>
-      <div className="grid grid-cols-4 gap-8 m-10">
-        <div className="col-span-1 h-full drop-shadow-xl rounded-lg p-4">
-          <div className="py-3 px-3 bg-stone-50 rounded-md mr-3 mb-3 text-md drop-shadow-lg hover:scale-105 transition flex justify-evenly items-center">
-            <AiOutlinePhone className="" />
-            <p>+1 778 678 8035</p>
+      <div className="m-10">
+        <div className="flex justify-evenly drop-shadow-xl rounded-lg p-4">
+          <div className="flex items-center bg-stone-100 shadow-lg rounded-md py-1 px-3 hover:scale-105 transition">
+            <AiOutlinePhone size={24} />
+            <p className="ml-2 text-lg">+1 (778) 678-8035</p>
           </div>
-          <div className="py-3 px-3 bg-stone-50 rounded-md mr-3 mb-3 text-md drop-shadow-lg hover:scale-105 transition flex justify-evenly items-center">
-            <AiOutlineMail className="" />
-            <p>james2012.shun@gmail.com</p>
-          </div>
+          
+          <AiOutlineMail className="" />
+          <AiOutlineLinkedin />
         </div>
 
-        <div className="col-span-3 h-full w-full drop-shadow-xl rounded-lg p-4">
+        <div className="drop-shadow-xl rounded-lg p-4 bg-orange-100">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col space-y-5 bg-orange-100 p-5">
+            className="flex flex-col space-y-5 p-5">
             <div className="space-x-3 flex">
               <div>
                 <input
@@ -75,7 +75,7 @@ export default function Contact() {
           </form>
         </div>
       </div>
-
+      </div>
     </div>
   );
 }
