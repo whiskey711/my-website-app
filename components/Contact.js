@@ -17,24 +17,38 @@ export default function Contact() {
 
   return (
     <div className="w-full min-h-screen">
-      <div className="border mx-auto mt-20 w-1/2 text-center">
-      <h1>Contact</h1>
-      <div className="m-10">
+      <div className="mx-auto mt-20 w-[800px] text-center">
+      <h1 className="text-3xl font-semibold my-5">Contact me and let's talk</h1>
+      <div className="mx-10">
         <div className="flex justify-evenly drop-shadow-xl rounded-lg p-4">
           <div className="flex items-center bg-stone-100 shadow-lg rounded-md py-1 px-3 hover:scale-105 transition">
             <AiOutlinePhone size={24} />
             <p className="ml-2 text-lg">+1 (778) 678-8035</p>
           </div>
+          <a 
+            className="flex items-center bg-stone-100 shadow-lg rounded-md py-1 px-3 hover:scale-105 transition"
+            href="mailto:james2012.shun@gmail.com"
+            title="Email">
+            <AiOutlineMail size={24} />
+            <p className="ml-2 text-lg">james2012.shun@gmail.com</p>
+          </a>
+          <a 
+            className="flex items-center bg-stone-100 shadow-lg rounded-md py-1 px-3 hover:scale-105 transition"
+            href="https://www.linkedin.com/in/linfeng-xu-98b51a126/"
+            target="_blank" 
+            rel="noopener noreferrer"
+            title="LinkedIn">
+            <AiOutlineLinkedin size={24} />
+            <p className="ml-2 text-lg">Linfeng Xu</p>
+          </a>
           
-          <AiOutlineMail className="" />
-          <AiOutlineLinkedin />
         </div>
 
-        <div className="drop-shadow-xl rounded-lg p-4 bg-orange-100">
+        <div className="drop-shadow-xl rounded-lg p-4 bg-stone-100">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col space-y-5 p-5">
-            <div className="space-x-3 flex">
+            <div className="grid grid-cols-2 gap-5">
               <div>
                 <input
                   {...register("name", { required: "Please fill your name" })}
@@ -54,7 +68,7 @@ export default function Contact() {
                   <p className="error-msg">{errors.email.message}</p>}
               </div>
             </div>
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col space-y-5">
               <input
                 {...register("subject", { required: "Please enter your email subject" })}
                 type="text"
@@ -65,12 +79,13 @@ export default function Contact() {
               <textarea
                 {...register("message", { required: "Please enter your message" })}
                 className="contactInput"
+                rows={8}
                 placeholder="Message"></textarea>
               {errors.message?.message &&
                 <p className="error-msg">{errors.message.message}</p>}
             </div>
             <button
-              className="px-7 py-2 rounded-md bg-amber-300 mx-auto"
+              className="px-7 py-2 rounded-md bg-orange-300 hover:bg-yellow-300 hover:scale-105 transition mx-auto"
               type="submit">Submit</button>
           </form>
         </div>
