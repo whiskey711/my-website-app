@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { AiOutlinePhone, AiOutlineMail, AiOutlineLinkedin } from "react-icons/ai";
 
@@ -16,35 +17,35 @@ export default function Contact() {
   }
 
   return (
-    <div className="w-full min-h-screen">
-      <div className="mx-auto mt-20 w-[800px] text-center">
-      <h1 className="text-3xl font-semibold my-5">Contact me and let's talk</h1>
+    <div className="w-full min-h-screen bg-stone-100">
+      <div className="mx-auto pt-14 w-[800px] text-center">
+      <h1 className="text-4xl font-extrabold py-5 text-blue-500">Contact me and let's talk</h1>
       <div className="mx-10">
         <div className="flex justify-evenly drop-shadow-xl rounded-lg p-4">
-          <div className="flex items-center bg-stone-100 shadow-lg rounded-md py-1 px-3 hover:scale-105 transition">
+          <div className="flex items-center shadow-lg rounded-md py-1 px-3 hover:scale-105 transition bg-white">
             <AiOutlinePhone size={24} />
-            <p className="ml-2 text-lg">+1 (778) 678-8035</p>
+            <p className="ml-2 ">+1 (778) 678-8035</p>
           </div>
           <a 
-            className="flex items-center bg-stone-100 shadow-lg rounded-md py-1 px-3 hover:scale-105 transition"
+            className="flex items-center shadow-lg rounded-md py-1 px-3 hover:scale-105 transition bg-white"
             href="mailto:james2012.shun@gmail.com"
             title="Email">
             <AiOutlineMail size={24} />
-            <p className="ml-2 text-lg">james2012.shun@gmail.com</p>
+            <p className="ml-2 ">james2012.shun@gmail.com</p>
           </a>
           <a 
-            className="flex items-center bg-stone-100 shadow-lg rounded-md py-1 px-3 hover:scale-105 transition"
+            className="flex items-center shadow-lg rounded-md py-1 px-3 hover:scale-105 transition bg-white"
             href="https://www.linkedin.com/in/linfeng-xu-98b51a126/"
             target="_blank" 
             rel="noopener noreferrer"
             title="LinkedIn">
             <AiOutlineLinkedin size={24} />
-            <p className="ml-2 text-lg">Linfeng Xu</p>
+            <p className="ml-2 ">Linfeng Xu</p>
           </a>
           
         </div>
 
-        <div className="drop-shadow-xl rounded-lg p-4 bg-stone-100">
+        <div className="drop-shadow-xl rounded-lg p-4">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col space-y-5 p-5">
@@ -85,7 +86,7 @@ export default function Contact() {
                 <p className="error-msg">{errors.message.message}</p>}
             </div>
             <button
-              className="px-7 py-2 rounded-md bg-orange-300 hover:bg-yellow-300 hover:scale-105 transition mx-auto"
+              className="px-7 py-2 rounded-md text-white text-lg font-medium bg-orange-400 hover:bg-yellow-400 hover:scale-105 transition mx-auto"
               type="submit">Submit</button>
           </form>
         </div>

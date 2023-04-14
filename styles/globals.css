@@ -9,6 +9,7 @@
 @layer base {
   html {
     font-family: 'Karla', sans-serif;
+    scroll-behavior: smooth !important;
   }
   html::-webkit-scrollbar {
     display: none;
