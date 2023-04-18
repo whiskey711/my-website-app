@@ -13,7 +13,7 @@ export default function HomeSec() {
         <p className="text-xl text-gray-700 mt-4 mb-8 text-center">A Frontend focused Web Developer building the Frontend of Websites and Web Applications that leads to the success of the overall product</p>
       </div>
       <div className="p-4 space-x-5 flex">
-        <div className="rounded-full p-5 shadow-lg cursor-pointer hover:scale-110 hover:bg-blue-100 duration-300">
+        <div className="rounded-full p-5 shadow-lg cursor-pointer hover:scale-110 hover:bg-sky-200 duration-300">
           <a 
             href="https://github.com/whiskey711" 
             target="_blank" 
@@ -22,7 +22,7 @@ export default function HomeSec() {
             <AiOutlineGithub size={22} />
           </a>
         </div>
-        <div className="rounded-full p-5 shadow-lg cursor-pointer hover:scale-110 hover:bg-blue-100 duration-300">
+        <div className="rounded-full p-5 shadow-lg cursor-pointer hover:scale-110 hover:bg-sky-200 duration-300">
           <a 
             href="https://www.linkedin.com/in/linfeng-xu-98b51a126/"
             target="_blank" 
@@ -31,14 +31,14 @@ export default function HomeSec() {
             <AiOutlineLinkedin size={22} />
           </a>
         </div>
-        <div className="rounded-full p-5 shadow-lg cursor-pointer hover:scale-110 hover:bg-blue-100 duration-300">
+        <div className="rounded-full p-5 shadow-lg cursor-pointer hover:scale-110 hover:bg-sky-200 duration-300">
           <a 
             href="mailto:james2012.shun@gmail.com"
             title="Email">
             <AiOutlineMail size={22} />
           </a>
         </div>
-        <div className="rounded-full p-5 shadow-lg cursor-pointer hover:scale-110 hover:bg-blue-100 duration-300">
+        <div className="rounded-full p-5 shadow-lg cursor-pointer hover:scale-110 hover:bg-sky-200 duration-300">
           <a 
             href="myResume.pdf"
             target="_blank" 

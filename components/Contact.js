@@ -17,7 +17,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-stone-100">
+    <div className="w-full min-h-screen bg-stone-400">
       <div className="mx-auto pt-14 w-[800px] text-center">
       <h1 className="text-4xl font-extrabold py-5 text-blue-500">Contact me and let's talk</h1>
       <div className="mx-10">
@@ -86,7 +86,7 @@ export default function Contact() {
                 <p className="error-msg">{errors.message.message}</p>}
             </div>
             <button
-              className="px-7 py-2 rounded-md text-white text-lg font-medium bg-orange-400 hover:bg-yellow-400 hover:scale-105 transition mx-auto"
+              className="px-7 py-2 rounded-md text-white text-lg font-medium bg-blue-500 hover:bg-sky-400 hover:scale-110 duration-300 mx-auto"
               type="submit">Submit</button>
           </form>
         </div>
