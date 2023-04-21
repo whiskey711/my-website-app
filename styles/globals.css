@@ -18,10 +18,10 @@
 
 @layer components {
   .contactInput {
-    @apply outline-none px-5 py-2 w-full rounded-md border-b-2 border-neutral-300 focus:border-amber-300 transition 
+    @apply px-5 py-2 w-full rounded-md outline-none shadow-lg shadow-blue-200 focus:shadow-orange-200
   }
   .error-msg {
-    @apply text-xs text-neutral-500
+    @apply text-xs text-neutral-500 invisible
   }
   .scroller-hide::-webkit-scrollbar {
     display: none;

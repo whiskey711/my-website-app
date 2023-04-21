@@ -73,7 +73,7 @@ export default function About() {
   });
 
   return (
-    <div className="border border-red-600 min-h-screen">
+    <div className="min-h-screen p-16 bg-stone-100">
       <div className="grid grid-cols-2 gap-28 mx-20 my-10">
         <div>
           <h1 className="text-4xl font-bold my-5">About me</h1>

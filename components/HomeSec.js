@@ -4,7 +4,7 @@ import Router from "next/router";
 export default function HomeSec() {
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center">
+    <div className="min-h-screen p-16 flex flex-col justify-center items-center">
       <div className="mx-40 flex flex-col justify-center items-center">
         <p className="bg-gray-300 px-2 uppercase">Let's build something together</p>
         <h1 className="text-6xl font-black my-4">
