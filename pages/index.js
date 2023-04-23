@@ -4,8 +4,10 @@ import Projects from '@/components/Projects'
 import HomeSec from '@/components/HomeSec'
 import Image from 'next/image'
 import Contact from '@/components/Contact'
+import { useForm } from 'react-hook-form'
 
 export default function Home() {
+
   return (
     <>
       <Head>

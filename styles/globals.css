@@ -18,12 +18,15 @@
 
 @layer components {
   .contactInput {
-    @apply outline-none px-5 py-2 w-full rounded-md border-b-2 border-neutral-300 focus:border-amber-300 transition 
+    @apply px-5 py-2 w-full rounded-md outline-none shadow-lg shadow-blue-200 focus:shadow-orange-200
   }
   .error-msg {
     @apply text-xs text-neutral-500
   }
   .scroller-hide::-webkit-scrollbar {
     display: none;
+  }
+  .round-btn {
+    @apply rounded-full p-5 shadow-lg cursor-pointer hover:scale-110 duration-300
   }
 }

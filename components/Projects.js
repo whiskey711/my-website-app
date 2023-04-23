@@ -49,7 +49,7 @@ export default function Projects() {
   });
 
   return (
-    <div className="border border-blue-600 min-h-screen">
+    <div className="p-16 min-h-screen">
       <div className="grid md:grid-cols-2 gap-10 m-10">
         {projElements}
       </div>
