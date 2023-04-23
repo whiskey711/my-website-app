@@ -63,7 +63,7 @@ export default function Contact() {
                   <input
                     {...register("name", { required: true })}
                     type="text"
-                    className="contactInput"
+                    className="input"
                     placeholder="Name"></input>
                   <p className={"error-msg " +
                     (errors.name?.type === "required" ? "visible" : "invisible")
@@ -75,7 +75,7 @@ export default function Contact() {
                   <input
                     {...register("email", { required: true })}
                     type="email"
-                    className="contactInput"
+                    className="input"
                     placeholder="Email"></input>
                   <p className={"error-msg " + 
                     (errors.email?.type === "required" ? "visible" : "invisible")  
@@ -88,7 +88,7 @@ export default function Contact() {
                 <input
                   {...register("subject", { required: true })}
                   type="text"
-                  className="contactInput"
+                  className="input"
                   placeholder="Subject"></input>
                   <p className={"error-msg " + 
                     (errors.subject?.type === "required" ? "visible" : "invisible")  
@@ -97,7 +97,7 @@ export default function Contact() {
                   </p>
                 <textarea
                   {...register("message", { required: true })}
-                  className="contactInput mt-5"
+                  className="input mt-5"
                   rows={8}
                   placeholder="Message"></textarea>
                 <p className={"error-msg " + 

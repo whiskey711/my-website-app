@@ -30,7 +30,7 @@ export default function Meme(props) {
   }
 
   return (
-    <main className="w-[500px]">
+    <main className="w-[600px]">
       <div className="m-5 grid grid-rows-2 grid-cols-2 gap-5">
         <input
           type="text"
@@ -38,7 +38,7 @@ export default function Meme(props) {
           name="topText"
           value={meme.topText}
           onChange={handleChange}
-          className="border border-gray-400 rounded-md"
+          className="input"
         />
         <input
           type="text"
@@ -46,7 +46,7 @@ export default function Meme(props) {
           name="bottomText"
           value={meme.bottomText}
           onChange={handleChange}
-          className="border border-gray-400 rounded-md"
+          className="input"
         />
         <button className="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md col-span-2 text-white" onClick={getMemeImage}>
           Get a new meme image
