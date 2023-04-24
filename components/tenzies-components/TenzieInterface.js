@@ -80,7 +80,7 @@ export default function TenzieInterface() {
           {diceElements}
         </div>
         <button 
-          className="bg-indigo-500 text-white rounded-lg text-2xl h-12 w-36" 
+          className="bg-indigo-500 active:bg-indigo-700 text-white rounded-lg text-2xl h-12 w-36" 
           onClick={rollDice}
         >
           {tenzies ? "New Game" : "Roll"}

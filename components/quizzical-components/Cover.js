@@ -5,7 +5,7 @@ export default function Cover(props) {
       <p className="text-blue-900 mt-3 mb-7">Test your politics knowledge here</p>
       <button
         onClick={props.startQuiz}
-        className="bg-blue-700 text-white rounded-lg text-lg h-10 w-32"
+        className="bg-blue-700 hover:bg-blue-500 hover:scale-110 duration-300 text-white rounded-lg text-lg h-10 w-32"
       >
         Start quiz
       </button>
