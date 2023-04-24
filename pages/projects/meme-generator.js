@@ -3,8 +3,8 @@ import Meme from "@/components/meme-generator-components/Meme"
 
 export default function memeGenerator(props) {
   return (
-    <div className="m-5 p-5 bg-gray-500 rounded-lg flex justify-center">
-      <div className="bg-white rounded-lg">
+    <div className="project-bg">
+      <div className="bg-stone-100 rounded-lg">
         <MemeHeader />
         <Meme 
           allmemes={props.memes}

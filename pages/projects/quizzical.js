@@ -9,7 +9,7 @@ export default function quizzical() {
       setStart(true);
   }
   return (
-    <div className="m-5 p-5 bg-gray-500 rounded-lg flex justify-center">
+    <div className="project-bg">
         {!start && <Cover startQuiz={startQuiz} />}
         {start && <Quiz />}
     </div>

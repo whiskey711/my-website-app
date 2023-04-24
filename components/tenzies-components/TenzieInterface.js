@@ -1,4 +1,4 @@
-import Die from "./die";
+import Die from "./Die";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
@@ -71,7 +71,7 @@ export default function TenzieInterface() {
   })
 
   return (
-    <div className="m-5 p-5 bg-sky-900 rounded-xl flex justify-center">
+    <div className="project-bg">
       {tenzies && <Confetti />}
       <div className="bg-stone-100 w-[450px] h-[450px] flex flex-col justify-around items-center p-7 rounded-xl">
         <h1 className="text-6xl font-semibold">Tenzies</h1>
@@ -80,7 +80,7 @@ export default function TenzieInterface() {
           {diceElements}
         </div>
         <button 
-          className="bg-indigo-500 text-white rounded-lg text-2xl h-12 w-36" 
+          className="bg-indigo-500 active:bg-indigo-700 text-white rounded-lg text-2xl h-12 w-36" 
           onClick={rollDice}
         >
           {tenzies ? "New Game" : "Roll"}
