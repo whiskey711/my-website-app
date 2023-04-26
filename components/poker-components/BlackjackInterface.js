@@ -178,39 +178,39 @@ export default function BlackjackInterface() {
   }
 
   return (
-    <div className="min-h-screen bg-yellow-300 flex justify-center items-center">
+    <div className="project-bg">
       <div className="bg-white w-2/3 rounded-lg p-5">
         <div className="text-center">
-          <h1>Dealer</h1>
+          <h1 className="text-lg font-semibold">Dealer</h1>
           <div className="flex justify-center">
             {dealerCardsElements}
           </div>
         </div>
-        <div className="text-center">
+        <div className="text-center h-6">
           {dealer.bust && <p>Dealer bust, you won</p>}
           {player.bust && <p>You bust, you lose</p>} 
           {(playerWon && !dealerWon) && <p>You have greater hand, you won</p>}
-          {(!playerWon && dealerWon) && <p>Dealer have greater hand, you lose</p>}
+          {(!playerWon && dealerWon) && <p>Dealer has greater hand, you lose</p>}
           {(playerWon && dealerWon) && <p>Draw</p>}
         </div>
         <div className="text-center">
-          <h1>You {player.sum}</h1>
+          <h1 className="text-lg font-semibold">You {player.sum}</h1>
           <div className="flex justify-center">
             {playerCardsElements}
           </div>
           <div>          
             {(player.bust || dealer.bust || dealerWon || playerWon) && 
             <button 
-              className="bg-platinum py-1 px-4 rounded-md drop-shadow-lg"
+              className="bg-blue-700 hover:bg-blue-500 hover:scale-110 duration-300 text-white rounded-md py-1 px-4"
               onClick={newGame}>New Game</button>}
           </div>
           {!(player.bust || playerStand) &&
           <div className="space-x-5">
             <button 
-              className="bg-platinum py-1 px-4 rounded-md drop-shadow-lg"
+              className="bg-blue-700 hover:bg-blue-500 hover:scale-110 duration-300 text-white rounded-md py-1 px-4"
               onClick={playerHit}>Hit</button>
             <button 
-              className="bg-platinum py-1 px-4 rounded-md drop-shadow-lg"
+              className="bg-blue-700 hover:bg-blue-500 hover:scale-110 duration-300 text-white rounded-md py-1 px-4"
               onClick={playerEndTurn}>Stand</button>
           </div>}
         </div>
