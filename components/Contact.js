@@ -18,9 +18,9 @@ export default function Contact() {
 
   return (
     <div className="w-full min-h-screen bg-stone-100 p-16">
-      <div className="mx-auto pt-14 w-[1000px] text-center">
+      <div className="pt-14 text-center">
         <h1 className="text-5xl font-extrabold py-5 text-blue-500">Contact me and let's talk</h1>
-        <div className="grid grid-cols-3">
+        <div className="grid lg:grid-cols-3">
           <div className="flex flex-col justify-start space-y-10 mt-5 p-4">
             <div className="flex items-center py-2 px-4 hover:scale-105 duration-300">
               <AiOutlinePhone size={48} color="darkorange" />
@@ -54,7 +54,7 @@ export default function Contact() {
 
           </div>
 
-          <div className="p-4 col-span-2">
+          <div className="p-4 lg:col-span-2">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col space-y-5 p-5">
