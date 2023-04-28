@@ -23,10 +23,10 @@ export default function BlackjackInterface() {
   });
 
   const playerCardsElements = playerCards.map((card) => {
-    return <PokerCard card={card} ind={-1} />;
+    return <PokerCard key={nanoid()} card={card} ind={-1} />;
   });
   const dealerCardsElements = dealerCards.map((card, index) => {
-    return <PokerCard card={card} ind={index} />;
+    return <PokerCard key={nanoid()} card={card} ind={index} />;
   })
 
   useEffect(() => {

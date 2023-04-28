@@ -6,7 +6,7 @@ export default function HomeSec() {
   return (
     <div className="min-h-screen p-16 flex flex-col justify-center items-center">
       <div className="md:mx-40 mx-10 flex flex-col justify-center items-center">
-        <p className="bg-gray-300 px-2 uppercase">Let's build something together</p>
+        <p className="bg-gray-300 px-2 uppercase">Let&apos;s build something together</p>
         <h1 className="text-6xl font-black my-4">
           Hi, I am <span className="text-sky-400">Linfeng Xu</span>
         </h1>
