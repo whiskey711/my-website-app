@@ -5,7 +5,7 @@ import tenzieScreenShot from "../public/images/tenzies-screenshot.png";
 import memeScreenShot from "../public/images/meme-generator-screenshot.png";
 import travelScreenShot from "../public/images/travel-journal-screenshot.png";
 import quizScreenShot from "../public/images/quizzical-screenshot.png";
-import replacement from "../public/images/maxresdefault.jpg";
+import gamesScreenShot from "../public/images/games-screenshot.png";
 import Image from "next/image";
 
 export default function Projects() {
@@ -24,7 +24,7 @@ export default function Projects() {
     },
     {
       screenShot: travelScreenShot,
-      title: "Travel journal",
+      title: "Travel Journal",
       description: "This is travel journal",
       url: "/projects/travel-journal"
     },
@@ -35,7 +35,7 @@ export default function Projects() {
       url: "/projects/quizzical"
     },
     {
-      screenShot: replacement,
+      screenShot: gamesScreenShot,
       title: "Games",
       description: "Some poker games",
       url: "/projects/games"
@@ -50,7 +50,8 @@ export default function Projects() {
 
   return (
     <div className="p-8 md:p-16 min-h-screen">
-      <div className="grid md:grid-cols-2 gap-10 m-10">
+      <h1 className="text-center text-5xl font-bold py-2 text-neutral-700 text-shadow shadow-gray-500">Some Things I&apos;ve Built</h1>
+      <div className="grid lg:grid-cols-2 gap-10 m-10">
         {projElements}
       </div>
     </div>
