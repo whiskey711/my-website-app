@@ -24,7 +24,7 @@ export default function Projects() {
     },
     {
       screenShot: travelScreenShot,
-      title: "Travel journal",
+      title: "Travel Journal",
       description: "This is travel journal",
       url: "/projects/travel-journal"
     },
@@ -50,7 +50,7 @@ export default function Projects() {
 
   return (
     <div className="p-8 md:p-16 min-h-screen">
-      <h1 className="text-center text-4xl font-bold py-2 text-blue-600 text-shadow shadow-gray-400">Some Things I&apos;ve Built</h1>
+      <h1 className="text-center text-5xl font-bold py-2 text-neutral-700 text-shadow shadow-gray-500">Some Things I&apos;ve Built</h1>
       <div className="grid lg:grid-cols-2 gap-10 m-10">
         {projElements}
       </div>
